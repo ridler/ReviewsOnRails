@@ -17,6 +17,4 @@ Businesses, Users who write reviews, Users who want to look at reviews
 Using the google map API and framework from the rottenpotatoes software project, we have the necessary tools to create a similar review website, with local businesses already populated. We want a similar difficulty level to the default project but with a different focus, business reviews.
 
 ### Team Members
-Forrest Ridler
-Kristina Entzel
-Connor Guerrieri
+Forrest Ridler | Kristina Entzel | Connor Guerrieri
