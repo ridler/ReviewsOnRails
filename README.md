@@ -2,6 +2,8 @@
 
 A rails web app for social reviewing
 
+https://www.pivotaltracker.com/projects/957846/overview
+
 ## Project Proposal
 
 ### Goals
