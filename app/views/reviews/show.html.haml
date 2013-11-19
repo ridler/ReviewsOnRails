@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @review.user
+%p
+  %b Business:
+  = @review.business
+%p
+  %b Time:
+  = @review.time
+%p
+  %b Stars:
+  = @review.stars
+%p
+  %b Price:
+  = @review.price
+
+= link_to 'Edit', edit_review_path(@review)
+\|
+= link_to 'Back', reviews_path
