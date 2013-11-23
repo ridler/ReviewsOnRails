@@ -1,7 +1,5 @@
 # ReviewsOnRails
 
-## Tagg's Branch
-
 A rails web app for social reviewing
 
 https://www.pivotaltracker.com/projects/957846/overview
