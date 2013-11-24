@@ -1,8 +1,6 @@
 ReviewsOnRails::Application.routes.draw do
   resources :restaurants
 
-  resources :products
-
   resources :reviews
 
   resources :users

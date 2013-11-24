@@ -23,7 +23,7 @@ describe RestaurantsController do
   # This should return the minimal set of attributes required to create a valid
   # Restaurant. As you add validations to Restaurant, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "location" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe RestaurantsController do
       it "assigns a newly created but unsaved restaurant as @restaurant" do
         # Trigger the behavior that occurs when invalid params are submitted
         Restaurant.any_instance.stub(:save).and_return(false)
-        post :create, {:restaurant => { "location" => "invalid value" }}, valid_session
+        post :create, {:restaurant => { "name" => "invalid value" }}, valid_session
         assigns(:restaurant).should be_a_new(Restaurant)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Restaurant.any_instance.stub(:save).and_return(false)
-        post :create, {:restaurant => { "location" => "invalid value" }}, valid_session
+        post :create, {:restaurant => { "name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe RestaurantsController do
         # specifies that the Restaurant created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Restaurant.any_instance.should_receive(:update_attributes).with({ "location" => "MyString" })
-        put :update, {:id => restaurant.to_param, :restaurant => { "location" => "MyString" }}, valid_session
+        Restaurant.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
+        put :update, {:id => restaurant.to_param, :restaurant => { "name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested restaurant as @restaurant" do
@@ -128,7 +128,7 @@ describe RestaurantsController do
         restaurant = Restaurant.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Restaurant.any_instance.stub(:save).and_return(false)
-        put :update, {:id => restaurant.to_param, :restaurant => { "location" => "invalid value" }}, valid_session
+        put :update, {:id => restaurant.to_param, :restaurant => { "name" => "invalid value" }}, valid_session
         assigns(:restaurant).should eq(restaurant)
       end
 
@@ -136,7 +136,7 @@ describe RestaurantsController do
         restaurant = Restaurant.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Restaurant.any_instance.stub(:save).and_return(false)
-        put :update, {:id => restaurant.to_param, :restaurant => { "location" => "invalid value" }}, valid_session
+        put :update, {:id => restaurant.to_param, :restaurant => { "name" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end

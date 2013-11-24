@@ -7,19 +7,22 @@
           %li= msg
 
   .field
+    = f.label :name
+    = f.text_field :name
+  .field
     = f.label :location
     = f.text_field :location
   .field
-    = f.label :phone
-    = f.text_field :phone
+    = f.label :averageRating
+    = f.number_field :averageRating
   .field
-    = f.label :webpage
-    = f.text_field :webpage
+    = f.label :averagePrice
+    = f.number_field :averagePrice
+  .field
+    = f.label :reviews
+    = f.text_area :reviews
   .field
     = f.label :cuisine
     = f.text_field :cuisine
-  .field
-    = f.label :priceAverage
-    = f.number_field :priceAverage
   .actions
     = f.submit 'Save'

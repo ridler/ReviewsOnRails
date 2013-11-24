@@ -1,20 +1,23 @@
 %p#notice= notice
 
 %p
+  %b Name:
+  = @restaurant.name
+%p
   %b Location:
   = @restaurant.location
 %p
-  %b Phone:
-  = @restaurant.phone
+  %b Averagerating:
+  = @restaurant.averageRating
 %p
-  %b Webpage:
-  = @restaurant.webpage
+  %b Averageprice:
+  = @restaurant.averagePrice
+%p
+  %b Reviews:
+  = @restaurant.reviews
 %p
   %b Cuisine:
   = @restaurant.cuisine
-%p
-  %b Priceaverage:
-  = @restaurant.priceAverage
 
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 \|

@@ -2,22 +2,24 @@
 
 %table
   %tr
+    %th Name
     %th Location
-    %th Phone
-    %th Webpage
+    %th Averagerating
+    %th Averageprice
+    %th Reviews
     %th Cuisine
-    %th Priceaverage
     %th
     %th
     %th
 
   - @restaurants.each do |restaurant|
     %tr
+      %td= restaurant.name
       %td= restaurant.location
-      %td= restaurant.phone
-      %td= restaurant.webpage
+      %td= restaurant.averageRating
+      %td= restaurant.averagePrice
+      %td= restaurant.reviews
       %td= restaurant.cuisine
-      %td= restaurant.priceAverage
       %td= link_to 'Show', restaurant
       %td= link_to 'Edit', edit_restaurant_path(restaurant)
       %td= link_to 'Destroy', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
