@@ -1,30 +1,63 @@
-%h1 Listing restaurants
+!!!
+%html
+  %head
+    %meta{content: "initial-scale=1.0, user-scalable=no", name: "viewport"}/
+    :css
+      html { height: 100% }
+      body { height: 100%; margin: 20px; padding: 0 }
+      #map-canvas { height: 50% }
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=#{@api_key}&sensor=true", type: "text/javascript"}
+      :cdata
+    :javascript
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(40.0176, -105.2797),
+          zoom: 13
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+  %body
 
-%table
-  %tr
-    %th Name
-    %th Location
-    %th Averagerating
-    %th Averageprice
-    %th Reviews
-    %th Cuisine
-    %th TotalReviews
-    %th Website
-    %th
+    %h1 Listing restaurants
 
-  - @restaurants.each do |restaurant|
-    %tr
-      %td= restaurant.name
-      %td= restaurant.location
-      %td= restaurant.averageRating
-      %td= restaurant.averagePrice
-      %td= restaurant.cuisine
-      %td= restaurant.totalReviews
-      %td= link_to restaurant.simpleWebLink, restaurant.website
-      %td= link_to 'Show', restaurant
-      %td= link_to 'Edit', edit_restaurant_path(restaurant)
-      %td= link_to 'Destroy', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    = form_tag restaurants_path, :method => :get, :id => 'cuisines_form' do
+      = hidden_field_tag "price_sort", true if @price_header
+      = hidden_field_tag "ratings_sort", true if @ratings_header
+      Include: 
+      - @all_cuisines.each do |cuisine|
+        = cuisine
+        = check_box_tag "cuisines[#{cuisine}]", 1, @selected_cuisines.include?(cuisine), :id => "cuisines_#{cuisine}"
+      = submit_tag 'Refresh', :id => 'cuisines_submit'
 
-%br
+    #map-canvas
 
-= link_to 'New Restaurant', new_restaurant_path
+    %table#restaurants
+      %tr
+        %th Name
+        %th Location
+        %th Averagerating
+        %th Averageprice
+        %th Cuisine
+        %th TotalReviews
+        %th Website
+        %th Zip Code
+
+      - @restaurants.each do |restaurant|
+        %tr
+          %td= link_to "#{restaurant.name}", restaurant
+          %td= restaurant.location
+          %td= restaurant.averageRating
+          %td= restaurant.averagePrice
+          %td= restaurant.cuisine
+          %td= restaurant.totalReviews
+          %td= link_to restaurant.simpleWebLink, restaurant.website
+          %td= restaurant.zipCode
+          %td= link_to 'Edit', edit_restaurant_path(restaurant)
+          %td= link_to 'Destroy', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+    %br
+
+    = link_to 'New Restaurant', new_restaurant_path
+

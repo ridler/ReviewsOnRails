@@ -12,7 +12,7 @@ restaurants = [ {:name => "Tahona Tequilla Bistro", :location => "1035 Pearl St,
 	{:name => "Cafe Mexicali", :location => "2850 Baseline Rd #1, Boulder, CO 80303", :cuisine => "mexican", :averagePrice => 2, :averageRating => 3, :totalReviews => 33, :website => "http://cafemexicali.com/"},
 	{:name => "Garbanzo", :location => "1905 29th St, Boulder, CO 80301", :cuisine => "mediterranean", :averagePrice => 2, :averageRating => 4, :totalReviews => 55, :website => "http://www.eatgarbanzo.com/"},
 	{:name => "Pei Wei", :location => "1675 29th St #1284, Boulder, CO 80301", :cuisine => "asian fusion", :averagePrice => 2, :averageRating => 3, :totalReviews => 19, :website => "http://www.peiwei.com/index.aspx"},
-	{:name => "McDonald's", :location => "1800 28th St, Boulder, CO", :cuisine => "american", :averagePrice => 1, :averageRating => 2, :totalReviews => 20, :website => "http://www.mcdonalds.com/us/en/home.html"},
+	{:name => "McDonald's", :location => "1800 28th St, Boulder, CO 80301", :cuisine => "american", :averagePrice => 1, :averageRating => 2, :totalReviews => 20, :website => "http://www.mcdonalds.com/us/en/home.html"},
 	{:name => "The Kitchen", :location => "1039 Pearl St, Boulder, CO 80303", :cuisine => "american", :averagePrice => 5, :averageRating => 1, :totalReviews => 119, :website => "http://thekitchen.com/the-kitchen-boulder/"} ]
 
 restaurants.each do |restaurant|

@@ -2,11 +2,33 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.json { render json: @restaurants }
-    # end
+    @api_key = Restaurant.gMapsAPIkey
+    sort = params[:sort] || session[:sort]
+    case sort
+    when 'price'
+      ordering,@price_header = {:order => :price}, 'hilite'
+    when 'reviews'
+      ordering,@rating_header = {:order => :rating}, 'hilite'
+    end
+    @all_cuisines = Restaurant.cuisines
+    @selected_cuisines = params[:cuisines] || session[:cuisines] || {}
+    
+    if @selected_cuisines == {}
+      @selected_cuisines = Hash[@all_cuisines.map {|cuisine| [cuisine, cuisine]}]
+    end
+    
+    if params[:sort] != session[:sort] or params[:cuisines] != session[:cuisines]
+      session[:sort] = sort
+      session[:cuisines] = @selected_cuisines
+      redirect_to :sort => sort, :cuisines => @selected_cuisines and return
+    end
+    @restaurants = Restaurant.find_all_by_cuisine(@selected_cuisines.keys, ordering)
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @restaurants }
+    end
+
   end
 
   # GET /restaurants/1
