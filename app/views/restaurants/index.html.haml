@@ -8,8 +8,8 @@
     %th Averageprice
     %th Reviews
     %th Cuisine
-    %th
-    %th
+    %th TotalReviews
+    %th Website
     %th
 
   - @restaurants.each do |restaurant|
@@ -18,8 +18,9 @@
       %td= restaurant.location
       %td= restaurant.averageRating
       %td= restaurant.averagePrice
-      %td= restaurant.reviews
       %td= restaurant.cuisine
+      %td= restaurant.totalReviews
+      %td= link_to restaurant.simpleWebLink, restaurant.website
       %td= link_to 'Show', restaurant
       %td= link_to 'Edit', edit_restaurant_path(restaurant)
       %td= link_to 'Destroy', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }

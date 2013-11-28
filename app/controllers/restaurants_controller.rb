@@ -3,18 +3,16 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @restaurants }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @restaurants }
+    # end
   end
 
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
     @restaurant = Restaurant.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @restaurant }
