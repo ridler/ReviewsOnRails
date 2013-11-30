@@ -1,7 +1,7 @@
 class Restaurant < ActiveRecord::Base
 	has_many :reviews
 	
-	@@cuisines = ["american", "french", "mexican", "asian fusioin", "thai", "chinese", "vietnameese", "mediterranean", "italian"]
+	@@cuisines = ["american", "french", "mexican", "asian fusioin", "mediterranean", "italian"]
 	@@gMapsAPIkey = "AIzaSyCAwege38IUT17AuWfl4QDOAaYmCOYUl0Y"
 	def self.cuisines; @@cuisines; end
 	def self.gMapsAPIkey; @@gMapsAPIkey; end
