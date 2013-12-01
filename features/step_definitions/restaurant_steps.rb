@@ -8,15 +8,11 @@ When(/^(?:|I )go to (.+)$/) do |page_name|
   visit(restaurants_path)
 end
 
-Given(/^I check the following cuisines: (.*?)$/) do |cuisines|
+Given(/^I (un)?check the following cuisines: (.*?)$/) do |uncheck, cuisines|
   cuisines.split(/,\s*/).each do |cuisine|
-    check("cuisines_#{cuisine}")
-  end
-end
-
-Given(/^I uncheck the following cuisines: (.*?)$/) do |cuisines|
-  cuisines.split(/,\s*/).each do |cuisine|
-    uncheck("cuisines_#{cuisine}")
+    if uncheck.nil? then check("cuisines_#{cuisine}")
+    else uncheck("cuisines_#{cuisine}")
+    end
   end
 end
 
