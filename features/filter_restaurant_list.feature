@@ -8,23 +8,23 @@ Background: restaurants have been added to database
 
   Given the following restaurants exist:
 
-  | name                    | cuisine 		|
+  | name                    | cuisine 		  |
   | Tahona Tequilla Bistro  | mexican       |
-  | Garbanzo	            | mediterranean |
-  | The Kitchen			    | american 	    |
+  | Garbanzo	              | mediterranean |
+  | The Kitchen			        | american 	    |
   | McDonald's              | american	    |
-  | PastaVino               | italian	    |
+  | PastaVino               | italian	      |
   | Brasserie Ten Ten       | french        |
-  | Cafe Mexicali		    | mexican       |
-  | Pei Wei		            | asian fusion  |
+  | Cafe Mexicali		        | mexican       |
+  | Pei Wei		              | asian fusion  |
 
-  # And I am on the ReviewsOnRails home page
+  When I go to the restaurants page
   
 Scenario: restrict to 'mexican' and 'italian' restaurants
   # enter step(s) to check the italian and mexican cuisines
-  Given I check the following cuisines: 'italian', 'mexican'
+  Given I check the following cuisines: italian, mexican
   # enter step(s) to uncheck all other checkboxes
-  And I uncheck the following cuisines: mediterreanean, asian fusion, french, american
+  And I uncheck the following cuisines: mediterranean, asian fusion, french, american
   # enter step to "submit" the search form on the homepage
   When I press "Refresh"
   # enter step(s) to ensure that mexican and italian restaurants are visible
@@ -39,11 +39,11 @@ Scenario: restrict to 'mexican' and 'italian' restaurants
   And I should not see "The Kitchen"
 
 Scenario: no ratings selected
-  When I uncheck the following cuisines: mediterreanean, asian fusion, french, american, italian, mexican
+  When I uncheck the following cuisines: mediterranean, asian fusion, french, american, italian, mexican
   And I press "Refresh"
-  Then I should see none of the restaurants.
+  Then I should see some of the restaurants.
 
 Scenario: all ratings selected
-  When I check the following cuisines: mediterreanean, asian fusion, french, american, italian, mexican
+  When I check the following cuisines: mediterranean, asian fusion, french, american, italian, mexican
   And I press "Refresh"
   Then I should see all of the restaurants.
