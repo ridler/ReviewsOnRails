@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131128170455) do
+ActiveRecord::Schema.define(:version => 20131202002849) do
 
   create_table "restaurants", :force => true do |t|
     t.string   "name"
@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(:version => 20131128170455) do
     t.integer  "averagePrice"
     t.text     "reviews"
     t.string   "cuisine"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "totalReviews"
     t.string   "website"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   create_table "reviews", :force => true do |t|
@@ -34,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20131128170455) do
     t.datetime "time"
     t.integer  "stars"
     t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -43,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20131128170455) do
     t.string   "location"
     t.string   "username"
     t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

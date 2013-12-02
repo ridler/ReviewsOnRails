@@ -23,6 +23,11 @@ class RestaurantsController < ApplicationController
       redirect_to :sort => sort, :cuisines => @selected_cuisines and return
     end
     @restaurants = Restaurant.find_all_by_cuisine(@selected_cuisines.keys, ordering)
+    @markers = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.title restaurant.name
+    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -61,7 +66,7 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(params[:restaurant])
-
+    
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }

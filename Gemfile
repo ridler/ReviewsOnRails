@@ -32,6 +32,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'turbolinks'
 
 # Use unicorn as the web server
 # gem 'unicorn'

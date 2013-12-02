@@ -1,5 +1,8 @@
 class Restaurant < ActiveRecord::Base
 	has_many :reviews
+	validates :name, presence: true
+	geocoded_by :location
+	after_validation :geocode
 	
 	@@cuisines = ["american", "french", "mexican", "asian fusion", "mediterranean", "italian"]
 	@@gMapsAPIkey = "AIzaSyCAwege38IUT17AuWfl4QDOAaYmCOYUl0Y"
