@@ -19,34 +19,30 @@
 
     %br
 
-    %table#main
+    %table#restaurants
       %tr
-        %td#restaurant_table{style: "vertical-align:top"}
-          %table#restaurants
-            %tr
-              %th Name
-              %th Rating
-              %th Price
+        %th Name
+        %th Rating
+        %th Price
 
-            - @restaurants.each do |restaurant|
-              %tr
-                %td= link_to "#{restaurant.name}", restaurant
-                %td= restaurant.averageRating
-                %td= restaurant.averagePrice
-              %tr
-                %td= link_to restaurant.simpleWebLink, restaurant.website
-                %td= restaurant.cuisine
+      - @restaurants.each do |restaurant|
+        %tr
+          %td= link_to "#{restaurant.name}", restaurant
+          %td= restaurant.averageRating
+          %td= restaurant.averagePrice
+          %td= link_to restaurant.simpleWebLink, restaurant.website
+          %td= restaurant.cuisine
 
-        %td
-          %div{style: "width: 500px;"}
-            #map{style: "width: 500px; height: 500px;"}
-          :javascript
-            handler = Gmaps.build('Google');
-            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-              markers = handler.addMarkers(#{raw @markers.to_json});
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-            });
+
+    %div{style: "width: 500px;"}
+      #map{style: "width: 500px; height: 500px;"}
+    :javascript
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(#{raw @markers.to_json});
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
 
     %br
 
