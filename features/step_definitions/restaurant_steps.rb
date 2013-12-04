@@ -5,7 +5,7 @@ Given(/^the following restaurants exist:$/) do |table|
 end
 
 When(/^(?:|I )go to (.+)$/) do |page_name|
-	visit(restaurants_path)
+	visit("/#{page_name}")
 end
 
 Given(/^I (un)?check the following cuisines: (.*?)$/) do |uncheck, cuisines|

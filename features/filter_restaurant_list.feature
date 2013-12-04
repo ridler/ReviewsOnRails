@@ -18,7 +18,7 @@ Background: restaurants have been added to database
   | Cafe Mexicali		        | mexican       |
   | Pei Wei		              | asian fusion  |
 
-  When I go to the restaurants page
+  When I go to restaurants
   
 Scenario: restrict to 'mexican' and 'italian' restaurants
   # enter step(s) to check the italian and mexican cuisines

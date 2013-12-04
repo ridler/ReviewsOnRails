@@ -18,7 +18,7 @@ Background: restaurants have been added to database
   | Cafe Mexicali           | mexican       | 3             | 2            |
   | Pei Wei                 | asian fusion  | 3             | 2            |
 
-  When I go to the restaurants page
+  When I go to restaurants
 
 Scenario: sort restaurants by rating
   When I follow "Rating"
