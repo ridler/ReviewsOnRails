@@ -30,8 +30,9 @@ restaurants = [
 	end
 
 	reviews = [
-		{:user_id => 1, :restaurant_id => 1, :user => User.find(1), :business => "Tahona Tequilla Bistro", :stars => 5, :price => 3, :content => "I like Tahona a lot!"},
-		{:user_id => 2, :restaurant_id => 2, :user => User.find(2), :business => "Brasserie Ten Ten", :stars => 4, :price => 4, :content => "I think B1010 is good."}
+		{:user => User.find(1), :restaurant => Restaurant.find(1), :stars => 5, :price => 3, :content => "I like Tahona a lot!"},
+		{:user => User.find(2), :restaurant => Restaurant.find(1), :stars => 2, :price => 4, :content => "I don't like mexican food..."},
+		{:user => User.find(2), :restaurant => Restaurant.find(2), :stars => 4, :price => 4, :content => "I think B1010 is good."}
 	]
 
 	reviews.each do |review|

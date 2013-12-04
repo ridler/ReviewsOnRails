@@ -24,7 +24,11 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.json
   def new
+    session[:user] = User.find(1)
+    if session[:user].nil? then redirect_to restaurants_path and return end;
+    @restaurant = Restaurant.find(params[:restaurant])
     @review = Review.new
+    flash[:restaurant] = @restaurant
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +44,16 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(params[:review])
+    if flash[:restaurant].nil? then redirect_to restaurants_path and return end;
+    if session[:user].nil? then redirect_to restaurants_path and return end;
+    @restaurant = flash[:restaurant]
+    form_info = params[:review]
+    complete_review = {:restaurant => @restaurant, :user => session[:user]}.merge(form_info)
+    @review = Review.new(complete_review)
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to @restaurant, notice: 'Review was successfully created.' }
         format.json { render json: @review, status: :created, location: @review }
       else
         format.html { render action: "new" }

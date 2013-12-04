@@ -1,23 +1,30 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @restaurant.name
+%h1= @restaurant.name
 %p
   %b Location:
   = @restaurant.location
 %p
-  %b Averagerating:
+  %b Rating:
   = @restaurant.averageRating
-%p
-  %b Averageprice:
+  \|
+  %b Price:
   = @restaurant.averagePrice
-%p
-  %b Reviews:
-  = @restaurant.reviews
-%p
+  \|
   %b Cuisine:
   = @restaurant.cuisine
+
+%h2 Reviews
+- @restaurant.reviews.each do |review|
+  = link_to "#{review.user.username}", review.user
+  \says
+  %p stars: #{review.stars} | price: #{review.price}
+  %p= review.content
+  %br
+
+%p
+  %b= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
+
 
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 \|
