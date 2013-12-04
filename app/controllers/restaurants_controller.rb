@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @api_key = Restaurant.gMapsAPIkey
-    sort = params[:sort] || session[:sort]
+    sort = params[:sort]
     case sort
     when 'price'
       ordering = 'averagePrice asc'
@@ -11,19 +11,14 @@ class RestaurantsController < ApplicationController
       ordering = 'averageRating desc'
     end
     @all_cuisines = Restaurant.cuisines
-    @selected_cuisines = params[:cuisines] || session[:cuisines] || {}
+    @selected_cuisines = params[:cuisines] || {}
     
     if @selected_cuisines == {}
       @selected_cuisines = Hash[@all_cuisines.map {|cuisine| [cuisine, cuisine]}]
     end
-    
-    if params[:sort] != session[:sort] or params[:cuisines] != session[:cuisines]
-      session[:sort] = sort
-      session[:cuisines] = @selected_cuisines
-      redirect_to :sort => sort, :cuisines => @selected_cuisines and return
-    end
 
     @restaurants = Restaurant.where(cuisine: @selected_cuisines.keys).order(ordering)
+    
     @markers = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
