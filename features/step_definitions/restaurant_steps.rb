@@ -18,7 +18,15 @@ end
 
 When(/I press (.*?)/) do |arg1|
 	# print page.html
-	click_button('cuisines_submit')
+	click_button(arg1)
+end
+
+When(/^I follow "(.*?)"$/) do |arg1|
+	click_link(arg1)
+end
+
+Then(/^I should see "(.*)"[^$\S]before "(.*)"$/) do |e1, e2|
+	page.body.should =~ /#{e1}.*#{e2}/m
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|

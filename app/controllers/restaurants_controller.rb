@@ -6,9 +6,9 @@ class RestaurantsController < ApplicationController
     sort = params[:sort] || session[:sort]
     case sort
     when 'price'
-      ordering,@price_header = {:order => :price}, 'hilite'
-    when 'reviews'
-      ordering,@rating_header = {:order => :rating}, 'hilite'
+      ordering = 'averagePrice asc'
+    when 'rating'
+      ordering = 'averageRating desc'
     end
     @all_cuisines = Restaurant.cuisines
     @selected_cuisines = params[:cuisines] || session[:cuisines] || {}
@@ -22,7 +22,8 @@ class RestaurantsController < ApplicationController
       session[:cuisines] = @selected_cuisines
       redirect_to :sort => sort, :cuisines => @selected_cuisines and return
     end
-    @restaurants = Restaurant.find_all_by_cuisine(@selected_cuisines.keys, ordering)
+
+    @restaurants = Restaurant.where(cuisine: @selected_cuisines.keys).order(ordering)
     @markers = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude

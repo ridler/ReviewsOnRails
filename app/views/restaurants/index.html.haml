@@ -19,11 +19,23 @@
 
     %br
 
+    %div{style: "width: 600px;"}
+      #map{style: "width: 600px; height: 200px;"}
+    :javascript
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(#{raw @markers.to_json});
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+
     %table#restaurants
       %tr
         %th Name
-        %th Rating
-        %th Price
+        %th= link_to 'Rating', restaurants_path(:sort => 'rating', :cuisines => @selected_cuisines), :id => 'ratings_header'
+        %th= link_to 'Price', restaurants_path(:sort => 'price', :cuisines => @selected_cuisines), :id => 'price_header'
+        %th Website
+        %th Cuisine
 
       - @restaurants.each do |restaurant|
         %tr
@@ -32,17 +44,6 @@
           %td= restaurant.averagePrice
           %td= link_to restaurant.simpleWebLink, restaurant.website
           %td= restaurant.cuisine
-
-
-    %div{style: "width: 500px;"}
-      #map{style: "width: 500px; height: 500px;"}
-    :javascript
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(#{raw @markers.to_json});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
 
     %br
 
