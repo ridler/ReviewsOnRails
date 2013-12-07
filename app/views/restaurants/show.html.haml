@@ -29,3 +29,12 @@
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 \|
 = link_to 'Back', restaurants_path
+
+%h2 Buzz
+
+- @tweets.each do |tweet|
+  %blockquote.twitter-tweet{width: "250"}
+    %p> #{tweet.text}
+    \— #{tweet.user.screen_name} (@akl)
+    %a{"data-datetime" => "2011-11-07T20:21:07+00:00", href: "#{tweet.url}"} November 7, 2011
+  %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
