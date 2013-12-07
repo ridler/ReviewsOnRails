@@ -30,8 +30,13 @@ class Restaurant < ActiveRecord::Base
 	end
 
 	def getTweets
-		@@client.search("#{self.name}", :count => 25, :result_type => "recent").collect
-		
+		tweets = @@client.search("#{self.name.gsub(/ /, '')}",
+			:count => 15, :geocode => "#{self.latitude},#{self.longitude},10mi").collect
+		if tweets.any? then return tweets
+		else
+			tweets = @@client.search("#{self.name}", :count => 15)
+			return tweets
+		end
 	end
 
 end

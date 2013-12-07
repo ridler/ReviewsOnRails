@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 restaurants = [
-	{:name => "Tahona Tequilla Bistro", :location => "1035 Pearl St, Boulder, CO 80302", :cuisine => "mexican", :averagePrice => 5, :averageRating => 4, :totalReviews => 23, :website => "http://www.tahonaboulder.com/"},
+	{:name => "Tahona Tequila Bistro", :location => "1035 Pearl St, Boulder, CO 80302", :cuisine => "mexican", :averagePrice => 5, :averageRating => 4, :totalReviews => 23, :website => "http://www.tahonaboulder.com/"},
 	{:name => "Brasserie Ten Ten", :location => "1011 Walnut St, Boulder, CO 80302", :cuisine => "french", :averagePrice => 3, :averageRating => 4, :totalReviews => 75, :website => "http://www.brasserietenten.com/"},
 	{:name => "PastaVino", :location => "1043 Pearl St, Boulder, CO 80302", :cuisine => "italian", :averagePrice => 4, :averageRating => 3, :totalReviews => 18, :website => "http://pastavino.com/"},
 	{:name => "Cafe Mexicali", :location => "2850 Baseline Rd #1, Boulder, CO 80303", :cuisine => "mexican", :averagePrice => 2, :averageRating => 3, :totalReviews => 33, :website => "http://cafemexicali.com/"},
