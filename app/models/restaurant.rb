@@ -29,14 +29,13 @@ class Restaurant < ActiveRecord::Base
 		config.access_token_secret = "SL4GNKK4Rzzv6kRxJCpCmGPzI3ASo8OxpQZ8OGLEZp4Yx"
 	end
 
-	def getTweets
-		tweets = @@client.search("#{self.name.gsub(/ /, '')}",
-			:count => 15, :geocode => "#{self.latitude},#{self.longitude},10mi").collect
-		if tweets.any? then return tweets
+	def tweets
+		if not self.twitterHandle.nil?
+			tweets = @@client.search("#{self.twitterHandle}", :count => 10).collect
 		else
-			tweets = @@client.search("#{self.name}", :count => 15)
-			return tweets
+			tweets = @@client.search("#{self.name}", :count => 10)
 		end
+		return tweets
 	end
 
 end

@@ -12,7 +12,7 @@
   = @restaurant.averagePrice
   \|
   %b Cuisine:
-  = @restaurant.cuisine
+  = link_to "#{@restaurant.cuisine}", "/restaurants/?cuisines[#{@restaurant.cuisine}]"
 
 %h2 Reviews
 - @restaurant.reviews.each do |review|
@@ -30,7 +30,7 @@
 \|
 = link_to 'Back', restaurants_path
 
-%h2 Buzz
+%h2 Buzz for #{@restaurant.twitterHandle}
 
 - @tweets.each do |tweet|
   %blockquote.twitter-tweet{width: "250"}

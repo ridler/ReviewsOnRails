@@ -36,7 +36,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1.json
   def show
     @restaurant = Restaurant.find(params[:id])
-    @tweets = @restaurant.getTweets
+    @tweets = @restaurant.tweets
     # @reviews = []
     # @restaurant.reviews.each do |review|
     #   @reviews << [review.content, review.stars, review.price, review.user.username]
