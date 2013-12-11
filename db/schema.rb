@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209031757) do
+ActiveRecord::Schema.define(:version => 20131211223418) do
 
   create_table "restaurants", :force => true do |t|
     t.string   "name"

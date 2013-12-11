@@ -2,6 +2,7 @@ require 'twitter'
 class Restaurant < ActiveRecord::Base
 	has_many :reviews
 	validates :name, presence: true
+	validates :location, presence:true
 	geocoded_by :location
 	after_validation :geocode
 	
@@ -12,7 +13,7 @@ class Restaurant < ActiveRecord::Base
 	
 	def simpleWebLink
 		if not self.website.nil?
-			return self.website.gsub(%r{http://}, "").split('/')[0]
+			return self.website.gsub(%r{http://}, "").split('/')[0].gsub(/www./, '')
 		end
 	end
 

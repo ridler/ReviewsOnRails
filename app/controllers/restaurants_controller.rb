@@ -37,6 +37,11 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @tweets = @restaurant.tweets
+    @marker = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.title restaurant.name
+    end
     # @reviews = []
     # @restaurant.reviews.each do |review|
     #   @reviews << [review.content, review.stars, review.price, review.user.username]

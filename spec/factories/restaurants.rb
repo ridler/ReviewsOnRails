@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :restaurant do
     name "MyString"
     location "MyString"
+    website "MyString"
   end
 end

@@ -30,14 +30,6 @@ describe RestaurantsController do
   # RestaurantsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  # describe "GET index" do
-  #   it "assigns all restaurants as @restaurants" do
-  #     restaurant = Restaurant.create! valid_attributes
-  #     get :index, {}, valid_session
-  #     assigns(:restaurants).should eq([restaurant])
-  #   end
-  # end
-
   describe "GET show" do
     it "assigns the requested restaurant as @restaurant" do
       restaurant = Restaurant.create! valid_attributes

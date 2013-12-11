@@ -1,42 +1,49 @@
-%p#notice= notice
+!!!
+%html
+  %head
+    %script{src: "//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry", type: "text/javascript"}
+    %script{src: "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", type: "text/javascript"}
 
-%h1= @restaurant.name
-%p
-  %b Location:
-  = @restaurant.location
-%p
-  %b Rating:
-  = @restaurant.averageRating
-  \|
-  %b Price:
-  = @restaurant.averagePrice
-  \|
-  %b Cuisine:
-  = link_to "#{@restaurant.cuisine}", "/restaurants/?cuisines[#{@restaurant.cuisine}]"
+  %body
+    %p#notice= notice
 
-%h2 Reviews
-- @restaurant.reviews.each do |review|
-  = link_to "#{review.user.username}", review.user
-  \says
-  %p stars: #{review.stars} | price: #{review.price}
-  %p= review.content
-  %br
+    %h1= @restaurant.name
+    %p
+      %b Location:
+      = @restaurant.location
+    %p
+      %b Rating:
+      = @restaurant.averageRating
+      \|
+      %b Price:
+      = @restaurant.averagePrice
+      \|
+      %b Cuisine:
+      = link_to "#{@restaurant.cuisine}", "/restaurants/?cuisines[#{@restaurant.cuisine}]"
 
-%p
-  %b= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
+    %h2 Reviews
+    - @restaurant.reviews.each do |review|
+      = link_to "#{review.user.username}", review.user
+      \says
+      %p stars: #{review.stars} | price: #{review.price}
+      %p= review.content
+      %br
+
+    %p
+      %b= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
 
 
-= link_to 'Edit', edit_restaurant_path(@restaurant)
-\|
-= link_to 'Back', restaurants_path
+    = link_to 'Edit', edit_restaurant_path(@restaurant)
+    \|
+    = link_to 'Back', restaurants_path
 
-%h2 Buzz for #{@restaurant.twitterHandle}
+    %h2 Buzz for #{@restaurant.twitterHandle}
 
-- @tweets.each do |tweet|
-  %blockquote.twitter-tweet{width: "250"}
-    %p> #{tweet.text}
-    \— #{tweet.user.screen_name}
-    %a{href: "#{tweet.url}"}
-  %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
+    - @tweets.each do |tweet|
+      %blockquote.twitter-tweet{width: "250"}
+        %p> #{tweet.text}
+        \— #{tweet.user.screen_name}
+        %a{href: "#{tweet.url}"}
+      %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
 
-#{@tweets.any?}
+    #{@tweets.any?}
