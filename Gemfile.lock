@@ -70,6 +70,11 @@ GEM
     equalizer (0.0.8)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     geocoder (1.1.8)
@@ -197,6 +202,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   debugger
+  factory_girl_rails
   geocoder
   gmaps4rails
   haml-rails
