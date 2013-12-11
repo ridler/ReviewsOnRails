@@ -15,12 +15,6 @@ class Restaurant < ActiveRecord::Base
 			return self.website.gsub(%r{http://}, "").split('/')[0]
 		end
 	end
-	
-	def zipCode
-		if not self.location.nil?
-			return self.location.reverse[0..5].reverse
-		end
-	end
 
 	@@client = Twitter::REST::Client.new do |config|
 		config.consumer_key        = "zs0DAUzdyuCVbA0hMy4OIg"
@@ -33,7 +27,7 @@ class Restaurant < ActiveRecord::Base
 		if not self.twitterHandle.nil?
 			tweets = @@client.search("#{self.twitterHandle}", :count => 10).collect
 		else
-			tweets = @@client.search("#{self.name}", :count => 10)
+			tweets = @@client.search("#{self.name}", :count => 10).collect
 		end
 		return tweets
 	end
