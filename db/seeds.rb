@@ -21,9 +21,10 @@ restaurants = [
 	end
 
 	users = [
-		{:username => "tagg", :password => "ridler"},
-		{:username => "kristi", :password => "entzel"}
-	]
+		{:location => "Boulder, C0 80303", :username => "RoofPizza", :email => "RoofPizza@hotmail.com", :password => "bitch"},
+		{:location => "Boulder, C0 80303", :username => "Jessie", :email => "Jessie@hotmail.com", :password => "James"}]
+
+
 
 	users.each do |user|
 		User.create!(user)

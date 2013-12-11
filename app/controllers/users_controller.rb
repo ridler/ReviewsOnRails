@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   # GET /users
   # GET /users.json
   def index
@@ -41,9 +42,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+	
     respond_to do |format|
       if @user.save
+      debugger
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
