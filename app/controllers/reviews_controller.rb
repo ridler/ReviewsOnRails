@@ -24,10 +24,11 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.json
   def new
-    session[:user] = User.find(1)
-    if session[:user].nil? then redirect_to restaurants_path and return end;
+    if !user_signed_in? then redirect_to restaurants_path and return end;
     @restaurant = Restaurant.find(params[:restaurant])
     @review = Review.new
+
+    
     flash[:restaurant] = @restaurant
 
     respond_to do |format|
@@ -53,6 +54,9 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
+		#@user = User.find(params[current_user.id])
+		#current_user.update_attributes(:reviews, @review)
+    
         format.html { redirect_to @restaurant, notice: 'Review was successfully created.' }
         format.json { render json: @review, status: :created, location: @review }
       else
