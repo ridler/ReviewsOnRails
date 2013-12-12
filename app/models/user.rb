@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	has_many :reviews
 	
 	validates :username,  presence: true
-	validates :email, presence: true, length: { maximum: 20 }
+	validates :email, presence: true, length: { maximum: 50 }
 	validates :password, presence: true, length: { maximum: 50 }
 	
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
