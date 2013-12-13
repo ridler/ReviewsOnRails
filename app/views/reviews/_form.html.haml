@@ -15,6 +15,9 @@
   .field
     = f.label :content
     = f.text_field :content
+    
+  .field
+    = f.hidden_field :restaurant_id, value: @restaurant.id 
 
   .actions
     = f.submit 'Save'

@@ -25,11 +25,9 @@ class ReviewsController < ApplicationController
   # GET /reviews/new.json
   def new
     if !user_signed_in? then redirect_to restaurants_path and return end;
-    @restaurant = Restaurant.find(params[:restaurant])
+	if !params[:restaurant] then redirect_to restaurants_path and return end;
+	@restaurant = Restaurant.find(params[:restaurant]) 
     @review = Review.new
-
-    
-    flash[:restaurant] = @restaurant
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,25 +43,25 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    if flash[:restaurant].nil? then redirect_to restaurants_path and return end;
-    if session[:user].nil? then redirect_to restaurants_path and return end;
-    @restaurant = flash[:restaurant]
-    form_info = params[:review]
-    complete_review = {:restaurant => @restaurant, :user => session[:user]}.merge(form_info)
-    @review = Review.new(complete_review)
+	
+    #if params[:review][:restaurant].nil? then redirect_to restaurants_path and return end;
+    #if !current_user then redirect_to restaurants_path and return end;
+    @review = Review.new(params[:review])
+    @restaurant = Restaurant.find(params[:review][:restaurant_id])
+    
+    @user = current_user
+    @user.reviews << @review
+    @user.save
 
     respond_to do |format|
-      if @review.save
-		#@user = User.find(params[current_user.id])
-		#current_user.update_attributes(:reviews, @review)
-    
+	if @review.save
         format.html { redirect_to @restaurant, notice: 'Review was successfully created.' }
         format.json { render json: @review, status: :created, location: @review }
       else
         format.html { render action: "new" }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
-    end
+      end
   end
 
   # PUT /reviews/1
