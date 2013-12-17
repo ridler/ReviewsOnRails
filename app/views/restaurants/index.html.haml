@@ -5,7 +5,7 @@
     %script{src: "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", type: "text/javascript"}
 
   %body	
-    %h1 Restaurant's Map
+    %h1 Reviews On Rails
 
     = form_tag restaurants_path, :method => :get, :id => 'cuisines_form' do
       = hidden_field_tag "price_sort", true if @price_header
