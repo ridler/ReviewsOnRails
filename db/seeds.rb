@@ -14,7 +14,9 @@ restaurants = [
 	{:name => "Garbanzo", :location => "1905 29th St, Boulder, CO", :cuisine => "mediterranean", :averagePrice => 2, :averageRating => 4, :totalReviews => 55, :website => "http://www.eatgarbanzo.com/"},
 	{:name => "Pei Wei", :location => "1675 29th St #1284, Boulder, CO", :cuisine => "asian fusion", :averagePrice => 2, :averageRating => 3, :totalReviews => 19, :website => "http://www.peiwei.com/index.aspx"},
 	{:name => "McDonald's", :location => "1800 28th St, Boulder, CO", :cuisine => "american", :averagePrice => 1, :averageRating => 2, :totalReviews => 20, :website => "http://www.mcdonalds.com/us/en/home.html"},
-	{:name => "The Kitchen", :location => "1039 Pearl St, Boulder, CO", :cuisine => "american", :averagePrice => 5, :averageRating => 1, :totalReviews => 119, :website => "http://thekitchen.com/the-kitchen-boulder/"}]
+	{:name => "Cuba Cuba Sandwicheria", :location => "2525 Arapahoe Ave E1, Boulder, CO", :cuisine => "cuban", :averagePrice => 2, :averageRating => 3, :totalReviews => 7, :website => "http://thekitchen.com/the-kitchen-boulder/"},
+	{:name => "Pizzeria Locale", :location => "1730 Pearl St, Boulder, CO", :cuisine => "italian", :averagePrice => 3, :averageRating => 4, :totalReviews => 11, :website => "http://www.cubacubadenver.com/"},
+	{:name => "Antica Roma", :location => " 1308 Pearl St, Boulder, CO", :cuisine => "italian", :averagePrice => 4, :averageRating => 3, :totalReviews => 19, :website => "http://www.anticaroma.com/"}]
 
 	restaurants.each do |restaurant|
 		Restaurant.create!(restaurant)
@@ -31,8 +33,8 @@ restaurants = [
 	end
 
 	reviews = [
-		{:user => User.find(1), :restaurant => Restaurant.find(1), :stars => 5, :price => 3, :content => "I like Tahona a lot!"},
-		{:user => User.find(2), :restaurant => Restaurant.find(1), :stars => 2, :price => 4, :content => "I don't like mexican food..."},
+		{:user => User.find(1), :restaurant => Restaurant.find(1), :stars => 5, :price => 3, :content => "I like Tahona a lot!  Their Daily Dos deal is a real steal.  Go for happy hour, and when it ends, order one!  HATERS BACK OFF"},
+		{:user => User.find(2), :restaurant => Restaurant.find(1), :stars => 2, :price => 4, :content => "I don't like mexican food. Tahnoa is okay though.  They incorporate asian flavors into traditionally mexican dishes. Okay thanks. I hope someone has many joys reading this ^.^"},
 		{:user => User.find(2), :restaurant => Restaurant.find(2), :stars => 4, :price => 4, :content => "I think B1010 is good."}
 	]
 
