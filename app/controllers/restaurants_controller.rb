@@ -7,15 +7,16 @@ class RestaurantsController < ApplicationController
     case sort
     when 'price'
       ordering = 'averagePrice asc'
+     
     when 'rating'
       ordering = 'averageRating desc'
-    end
+     end
     @all_cuisines = Restaurant.cuisines
     @selected_cuisines = params[:cuisines] || {}
     
     if @selected_cuisines == {}
       @selected_cuisines = Hash[@all_cuisines.map {|cuisine| [cuisine, cuisine]}]
-    end
+      end
 
     @restaurants = Restaurant.where(cuisine: @selected_cuisines.keys).order(ordering)
     @markers = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
@@ -30,7 +31,7 @@ class RestaurantsController < ApplicationController
     #   format.json { render json: @restaurants }
     # end
 
-  end
+ 
 
   # GET /restaurants/1
   # GET /restaurants/1.json
@@ -99,7 +100,6 @@ class RestaurantsController < ApplicationController
       end
     end
   end
-
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
