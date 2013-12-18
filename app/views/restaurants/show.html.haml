@@ -42,27 +42,9 @@
             =review.content
         %br
 
-<<<<<<< HEAD
-%h2 Reviews
-- @restaurant.reviews.each do |review|
-  = link_to "#{review.user.username}", review.user
-  \says
-  %p stars: #{review.stars} | price: #{review.price}
-  %p= review.content
-  %br
-
-%p
-  %b= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
-
-
-= link_to 'Edit', edit_restaurant_path(@restaurant)
-\|
-= link_to 'Back', restaurants_path
-=======
     %tweets
       %h2 Buzz
       - @tweets.each do |tweet|
         %blockquote.twitter-tweet
           %a{href: "#{tweet.url}"}
         %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
->>>>>>> a8a81059be4aa88c1637338163ec5ae7ea132865
