@@ -6,7 +6,7 @@ class Restaurant < ActiveRecord::Base
 	geocoded_by :location
 	after_validation :geocode
 	
-	@@cuisines = ["american", "french", "mexican", "asian fusion", "mediterranean", "italian"]
+	@@cuisines = ["american", "french", "mexican", "asian fusion", "mediterranean", "italian", "cuban"]
 	@@gMapsAPIkey = "AIzaSyCAwege38IUT17AuWfl4QDOAaYmCOYUl0Y"
 	def self.cuisines; @@cuisines; end
 	def self.gMapsAPIkey; @@gMapsAPIkey; end
@@ -45,9 +45,9 @@ class Restaurant < ActiveRecord::Base
 
 	def tweets
 		if not self.twitterHandle.nil?
-			tweets = @@client.search("#{self.twitterHandle}", :count => 10).collect
+			tweets = @@client.search("#{self.twitterHandle}", :geocode => "#{self.latitude},#{self.longitude},50mi", :count => 10).collect
 		else
-			tweets = @@client.search("#{self.name}", :count => 10).collect
+			tweets = @@client.search("#{self.name}", :geocode => "#{self.latitude},#{self.longitude},50mi", :count => 10).collect
 		end
 		return tweets
 	end
