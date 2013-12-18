@@ -59,7 +59,7 @@
             %td= restaurant.averageRating
             %td= restaurant.averagePrice
             %td= restaurant.cuisine
-            %td= restaurant.simpleWebLink
+            %td= link_to "#{restaurant.simpleWebLink}", restaurant.simpleWebLink
             %td= if restaurant.reviews.first.nil? then "No reviews yet!" else "\"#{restaurant.reviews.first.content.chars[0...35].join}...\""; end
     %br
     %newRes

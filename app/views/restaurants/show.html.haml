@@ -6,44 +6,45 @@
 
   %body
     %p#notice= notice
-
     %h1= @restaurant.name
-    %p
-      %b Location:
-      = @restaurant.location
-    %p
-      %b Rating:
-      = @restaurant.averageRating
-      \|
-      %b Price:
-      = @restaurant.averagePrice
-      \|
-      %b Cuisine:
-      = link_to "#{@restaurant.cuisine}", "/restaurants/?cuisines[#{@restaurant.cuisine}]"
+    %restaurantInfo
+      = link_to 'Edit this restaurant', edit_restaurant_path
+      %p
+        %emph1
+          Location:
+        = @restaurant.location
+      %p
+        %emph1
+          Rating:
+        = @restaurant.averageRating
+        \|
+        %emph1
+          Price:
+        = @restaurant.averagePrice
+        \|
+        %emph1
+          Cuisine:
+        = link_to "#{@restaurant.cuisine}", "/restaurants/?cuisines[#{@restaurant.cuisine}]"
+      %p
+        %emph1= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
+    %reviews
+      %h2 Reviews
+      - @restaurant.reviews.each do |review|
+        %p
+          %revUsr
+            = link_to "#{review.user.username}", review.user
+            \says
+          %br
+          %emph1
+            stars: #{review.stars} | price: #{review.price}
+          %br
+          %reviewText
+            =review.content
+        %br
 
-    %h2 Reviews
-    - @restaurant.reviews.each do |review|
-      = link_to "#{review.user.username}", review.user
-      \says
-      %p stars: #{review.stars} | price: #{review.price}
-      %p= review.content
-      %br
-
-    %p
-      %b= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
-
-
-    = link_to 'Edit', edit_restaurant_path(@restaurant)
-    \|
-    = link_to 'Back', restaurants_path
-
-    %h2 Buzz for #{@restaurant.twitterHandle}
-
-    - @tweets.each do |tweet|
-      %blockquote.twitter-tweet{width: "250"}
-        %p> #{tweet.text}
-        \— #{tweet.user.screen_name}
-        %a{href: "#{tweet.url}"}
-      %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
-
-    #{@tweets.any?}
+    %tweets
+      %h2 Buzz
+      - @tweets.each do |tweet|
+        %blockquote.twitter-tweet
+          %a{href: "#{tweet.url}"}
+        %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
