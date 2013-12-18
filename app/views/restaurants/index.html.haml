@@ -4,47 +4,64 @@
     %script{src: "//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry", type: "text/javascript"}
     %script{src: "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", type: "text/javascript"}
 
-  %body	
-    %h1 Restaurant's Map
+  %body{style: "width: 100%; height: 100%;"}
+    %h1 Reviews On Rails
 
-    = form_tag restaurants_path, :method => :get, :id => 'cuisines_form' do
-      = hidden_field_tag "price_sort", true if @price_header
-      = hidden_field_tag "ratings_sort", true if @ratings_header
-      Include: 
-      - @all_cuisines.each do |cuisine|
-        = check_box_tag "cuisines[#{cuisine}]", 1, @selected_cuisines.include?(cuisine), :id => "cuisines_#{cuisine}"
-        = "#{cuisine}"
-      = submit_tag 'Refresh', :id => 'cuisines_submit'
+    %sidebar
+      - if current_user
+        Logged in as #{current_user.username} &nbsp
+        &nbsp
+        %br
+        = link_to "Sign Out", destroy_user_session_path, :method => :delete
+        %br
+        = link_to "My Reviews", user_path(current_user.id)
+      - else
+        = link_to "Sign up", new_user_registration_path
+        &nbsp
+        %br
+        = link_to "Sign In", new_user_session_path
+      %br
+      %br
+      = form_tag restaurants_path, :method => :get, :id => 'cuisines_form' do
+        = hidden_field_tag "price_sort", true if @price_header
+        = hidden_field_tag "ratings_sort", true if @ratings_header
+        %emph1 Include:
+        %br
+        - @all_cuisines.each do |cuisine|
+          = check_box_tag "cuisines[#{cuisine}]", 1, @selected_cuisines.include?(cuisine), :id => "cuisines_#{cuisine}"
+          = "#{cuisine}"
+          %br
+        = submit_tag 'Refresh', :id => 'cuisines_submit'
 
     %br
+    %div{style: "width: calc(100% - 170px); height:50%;"}
+      #map{style: "width: 100%; height:350px;"}
+        :javascript
+          handler = Gmaps.build('Google');
+          handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+            markers = handler.addMarkers(#{raw @markers.to_json});
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+          });
 
-    %div{style: "width: 600px;"}
-      #map{style: "width: 600px; height: 200px;"}
-    :javascript
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(#{raw @markers.to_json});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
-
-    %table#restaurants
-      %tr
-        %th Name
-        %th= link_to 'Rating', restaurants_path(:sort => 'rating', :cuisines => @selected_cuisines), :id => 'ratings_header'
-        %th= link_to 'Price', restaurants_path(:sort => 'price', :cuisines => @selected_cuisines), :id => 'price_header'
-        %th Website
-        %th Cuisine
-
-      - @restaurants.each do |restaurant|
+    %indexBox
+      %table#restaurants
         %tr
-          %td= link_to "#{restaurant.name}", restaurant
-          %td= restaurant.averageRating
-          %td= restaurant.averagePrice
-          %td= link_to restaurant.simpleWebLink, restaurant.website
-          %td= restaurant.cuisine
-
+          %th Name
+          %th= link_to 'Rating', restaurants_path(:sort => 'rating', :cuisines => @selected_cuisines), :id => 'ratings_header'
+          %th= link_to 'Price', restaurants_path(:sort => 'price', :cuisines => @selected_cuisines), :id => 'price_header'
+          %th Cuisine
+          %th Website
+          %th Sample Review
+        - @restaurants.each do |restaurant|
+          %tr
+            %td= link_to "#{restaurant.name}", restaurant
+            %td= restaurant.averageRating
+            %td= restaurant.averagePrice
+            %td= restaurant.cuisine
+            %td= link_to "#{restaurant.simpleWebLink}", restaurant.simpleWebLink
+            %td= if restaurant.reviews.first.nil? then "No reviews yet!" else "\"#{restaurant.reviews.first.content.chars[0...35].join}...\""; end
     %br
-
-    = link_to 'New Restaurant', new_restaurant_path
+    %newRes
+      =link_to 'Add A New Restaurant', new_restaurant_path
 

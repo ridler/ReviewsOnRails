@@ -10,17 +10,14 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :location
+    = f.label "Address"
     = f.text_field :location
   .field
-    = f.label :averageRating
-    = f.number_field :averageRating
+    = f.label "Twitter Handle (ex: '@ReviewsOnRails')"
+    = f.text_field :twitterHandle
   .field
-    = f.label :averagePrice
-    = f.number_field :averagePrice
-  .field
-    = f.label :reviews
-    = f.text_area :reviews
+    = f.label "Website"
+    = f.text_field :website
   .field
     = f.label :cuisine
     = f.text_field :cuisine

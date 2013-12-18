@@ -1,19 +1,48 @@
-%p#notice= notice
+!!!
+%html
+  %head
+    %script{src: "//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry", type: "text/javascript"}
+    %script{src: "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", type: "text/javascript"}
 
-%h1= @restaurant.name
-%p
-  %b Location:
-  = @restaurant.location
-%p
-  %b Rating:
-  = @restaurant.averageRating
-  \|
-  %b Price:
-  = @restaurant.averagePrice
-  \|
-  %b Cuisine:
-  = @restaurant.cuisine
+  %body
+    %p#notice= notice
+    %h1= @restaurant.name
+    %restaurantInfo
+      = link_to 'Edit this restaurant', edit_restaurant_path
+      %p
+        %emph1
+          Location:
+        = @restaurant.location
+      %p
+        %emph1
+          Rating:
+        = @restaurant.averageRating
+        \|
+        %emph1
+          Price:
+        = @restaurant.averagePrice
+        \|
+        %emph1
+          Cuisine:
+        = link_to "#{@restaurant.cuisine}", "/restaurants/?cuisines[#{@restaurant.cuisine}]"
+      %p
+        %emph1= link_to 'Write a new review', new_review_path(:restaurant => @restaurant)
+    %reviews
+      %h2 Reviews
+      - @restaurant.reviews.each do |review|
+        %p
+          %revUsr
+            = link_to "#{review.user.username}", review.user
+            \says
+          %br
+          %emph1
+            stars: #{review.stars} | price: #{review.price}
+          %br
+          %reviewText
+            =review.content
+        %br
 
+<<<<<<< HEAD
 %h2 Reviews
 - @restaurant.reviews.each do |review|
   = link_to "#{review.user.username}", review.user
@@ -29,3 +58,11 @@
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 \|
 = link_to 'Back', restaurants_path
+=======
+    %tweets
+      %h2 Buzz
+      - @tweets.each do |tweet|
+        %blockquote.twitter-tweet
+          %a{href: "#{tweet.url}"}
+        %script{charset: "utf-8", src: "//platform.twitter.com/widgets.js"}
+>>>>>>> a8a81059be4aa88c1637338163ec5ae7ea132865

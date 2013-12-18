@@ -18,17 +18,17 @@ class RestaurantsController < ApplicationController
     end
 
     @restaurants = Restaurant.where(cuisine: @selected_cuisines.keys).order(ordering)
-    
     @markers = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
       marker.title restaurant.name
     end
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @restaurants }
-    end
+    render :layout => 'home.html.haml'
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @restaurants }
+    # end
 
   end
 
@@ -36,6 +36,12 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1.json
   def show
     @restaurant = Restaurant.find(params[:id])
+    @tweets = @restaurant.tweets
+    @marker = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.title restaurant.name
+    end
     # @reviews = []
     # @restaurant.reviews.each do |review|
     #   @reviews << [review.content, review.stars, review.price, review.user.username]

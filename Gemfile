@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
-gem 'devise'
+
 gem 'rails', '3.2.15'
-gem 'twitter-bootstrap-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -14,6 +13,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 group :test do
   gem 'cucumber-rails', :require => false
@@ -26,7 +26,6 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'therubyracer'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
@@ -36,6 +35,11 @@ gem 'jquery-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'turbolinks'
+gem 'twitter'
+gem 'twitter-bootstrap-rails'
+gem 'devise'
+gem 'therubyracer'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

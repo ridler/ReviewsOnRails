@@ -1,6 +1,8 @@
+require 'twitter'
 class Restaurant < ActiveRecord::Base
 	has_many :reviews
 	validates :name, presence: true
+	validates :location, presence:true
 	geocoded_by :location
 	after_validation :geocode
 	
@@ -11,9 +13,10 @@ class Restaurant < ActiveRecord::Base
 	
 	def simpleWebLink
 		if not self.website.nil?
-			return self.website.gsub(%r{http://}, "").split('/')[0]
+			return self.website.gsub(%r{http://}, "").split('/')[0].gsub(/www./, '')
 		end
 	end
+<<<<<<< HEAD
 	
     #@@client = Twitter::REST::Client.new do |config|
 	#		config.consumer_key = "zs0DAUzdyuCVbA0hMy4OIg"
@@ -31,3 +34,23 @@ class Restaurant < ActiveRecord::Base
          #   return tweets
     #end
     end
+=======
+
+	@@client = Twitter::REST::Client.new do |config|
+		config.consumer_key        = "zs0DAUzdyuCVbA0hMy4OIg"
+		config.consumer_secret     = "aibqYT6jJlbH8tnZsdboBc97WH8xIxB9I3GgmEcLsOY"
+		config.access_token        = "2153755358-eKZx8030Kdx7ZmOaBVOPNmKfArHytv29wCbPUqj"
+		config.access_token_secret = "SL4GNKK4Rzzv6kRxJCpCmGPzI3ASo8OxpQZ8OGLEZp4Yx"
+	end
+
+	def tweets
+		if not self.twitterHandle.nil?
+			tweets = @@client.search("#{self.twitterHandle}", :count => 10).collect
+		else
+			tweets = @@client.search("#{self.name}", :count => 10).collect
+		end
+		return tweets
+	end
+
+end
+>>>>>>> a8a81059be4aa88c1637338163ec5ae7ea132865

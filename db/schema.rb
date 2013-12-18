@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209221737) do
+ActiveRecord::Schema.define(:version => 20131211223418) do
 
   create_table "restaurants", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20131209221737) do
     t.string   "website"
     t.float    "longitude"
     t.float    "latitude"
+    t.string   "twitterHandle"
   end
 
   create_table "reviews", :force => true do |t|
