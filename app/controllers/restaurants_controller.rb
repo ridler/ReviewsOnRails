@@ -2,6 +2,23 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
+<<<<<<< HEAD
+    @api_key = Restaurant.gMapsAPIkey
+    sort = params[:sort]
+    case sort
+    when 'price'
+      ordering = 'averagePrice asc'
+     
+    when 'rating'
+      ordering = 'averageRating desc'
+     end
+    @all_cuisines = Restaurant.cuisines
+    @selected_cuisines = params[:cuisines] || {}
+    
+    if @selected_cuisines == {}
+      @selected_cuisines = Hash[@all_cuisines.map {|cuisine| [cuisine, cuisine]}]
+      end
+=======
   	@api_key = Restaurant.gMapsAPIkey
   	sort = params[:sort]
   	case sort
@@ -13,6 +30,7 @@ class RestaurantsController < ApplicationController
   	
   	@all_cuisines = Restaurant.cuisines
   	@selected_cuisines = params[:cuisines] || {}
+>>>>>>> 65c4f1d2de3ba50fa8ad419f526cfe37dcb4359d
 
   	if @selected_cuisines == {}
   		@selected_cuisines = Hash[@all_cuisines.map {|cuisine| [cuisine, cuisine]}]
@@ -31,7 +49,11 @@ class RestaurantsController < ApplicationController
     #   format.json { render json: @restaurants }
     # end
 
+<<<<<<< HEAD
+ 
+=======
 end
+>>>>>>> 65c4f1d2de3ba50fa8ad419f526cfe37dcb4359d
 
   # GET /restaurants/1
   # GET /restaurants/1.json
@@ -100,7 +122,6 @@ end
   		end
   	end
   end
-
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
