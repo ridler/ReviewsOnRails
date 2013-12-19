@@ -9,18 +9,19 @@
 
     %sidebar
       - if current_user
-        Logged in as #{current_user.username} &nbsp
-        &nbsp
-        %br
         = link_to "Sign Out", destroy_user_session_path, :method => :delete
         %br
         = link_to "My Reviews", user_path(current_user.id)
+        %br
+        %br
+        Logged in as #{current_user.username} &nbsp
+        &nbsp
       - else
         = link_to "Sign up", new_user_registration_path
         &nbsp
         %br
         = link_to "Sign In", new_user_session_path
-      %br
+        %br
       %br
       = form_tag restaurants_path, :method => :get, :id => 'cuisines_form' do
         = hidden_field_tag "price_sort", true if @price_header

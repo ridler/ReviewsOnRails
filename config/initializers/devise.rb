@@ -1,10 +1,11 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = '9f60328c58100deed77065424eeaa3afbe6b499ee63c9bfdaac1f0234b394382c8221878210af501ef5ff4e6fa0e06da36ada3e34faa96b3b5816564b6f82e26'
+  config.secret_key = '88899a9d6bf98754e1c23637c3deb4642fa3ba90e0ef03e56846c3893872394784d8fcc4b68b62b409b807f8364a22d0405d24984375c46c853c63d0423b3083'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -77,9 +78,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing :skip => :sessions to `devise_for` in your config/routes.rb
-  #config.skip_session_storage = [:http_auth]
-
-
+  config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -97,7 +96,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = 'c77aa03d5f8bda5ca3f5b2c9caa8727bea5cb535f2c558eb5eef98bcee98fce43d75c65f7e1a70fbfacd7cfe78e6154030a903448b3e7382bbaee23f0dae0fcd'
+  # config.pepper = '40585062f94ebf32ce15d4901a8e947a50195e556862e4112a0329fb39e19b6e70724800b6a67f893abb0a3bb3b93fa3f95df77a850af106e6607449549685ff'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -137,8 +136,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 8..128.
-  config.password_length = 4..50
-  
+  config.password_length = 8..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -203,11 +201,11 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  config.scoped_views = false
+  # config.scoped_views = false
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
-  config.default_scope = :user
+  # config.default_scope = :user
 
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
