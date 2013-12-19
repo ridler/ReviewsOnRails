@@ -225,6 +225,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   launchy
+  nokogiri (= 1.6.1)
   pg
   rails (= 3.2.15)
   rspec-rails

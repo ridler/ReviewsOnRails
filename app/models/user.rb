@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
 	has_many :reviews
 	
-	validates :username,  presence: true
+	#validates :username,  presence: true
 	validates :email, presence: true, length: { maximum: 50 }
 	validates :password, presence: true, length: { maximum: 50 }
 	
