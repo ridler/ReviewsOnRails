@@ -36,8 +36,8 @@ gem 'gmaps4rails'
 gem 'turbolinks'
 gem 'twitter'
 gem 'twitter-bootstrap-rails'
-gem 'devise'
 gem 'therubyracer'
+gem 'omniauth-twitter'
 
 
 # Use unicorn as the web server

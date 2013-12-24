@@ -8,16 +8,10 @@
 
 %body
   - if current_user
-    Logged in as #{current_user.username} &nbsp
-    = link_to "Home", restaurants_path
-    &nbsp
-    = link_to "Sign Out", destroy_user_session_path, :method => :delete
-    = link_to "My Reviews", user_path(current_user.id)
+    Welcome #{current_user.username}!
+    \#{link_to "SignOut", signout_path}
   - else
-    = link_to "Sign up", new_user_registration_path
-    &nbsp
-    = link_to "Sign In", new_user_session_path
-    
+    = link_to "Sign in with Twitter", "/auth/twitter"
   - if flash[:notice]
     #notice.message= flash[:notice]
   - elsif flash[:warning]

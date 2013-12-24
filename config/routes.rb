@@ -1,6 +1,4 @@
 ReviewsOnRails::Application.routes.draw do
-  devise_for :users
-	
   resources :users
 	get 'users/:id' => 'users#show'
   
@@ -8,8 +6,8 @@ ReviewsOnRails::Application.routes.draw do
 
   resources :reviews
 
-
- 
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as => :signout
 
 
   # The priority is based upon order of creation:

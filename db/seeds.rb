@@ -23,8 +23,8 @@ restaurants = [
 	end
 
 	users = [
-		{:location => "Boulder, C0 80303", :username => "RoofPizza", :email => "RoofPizza@hotmail.com", :password => "roofpizza"},
-		{:location => "Boulder, C0 80303", :username => "Jessie", :email => "Jessie@hotmail.com", :password => "jessiejames"}]
+		{:location => "Boulder, C0 80303", :username => "Tagg"},
+		{:location => "Boulder, C0 80303", :username => "Forrest"}]
 
 
 
