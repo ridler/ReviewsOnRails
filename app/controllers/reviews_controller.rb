@@ -24,9 +24,9 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.json
   def new
-    if !user_signed_in? then redirect_to restaurants_path and return end;
-	if !params[:restaurant] then redirect_to restaurants_path and return end;
-	@restaurant = Restaurant.find(params[:restaurant]) 
+    if session[:user_id].nil? then redirect_to restaurants_path and return end;
+    if !params[:restaurant] then redirect_to restaurants_path and return end;
+    @restaurant = Restaurant.find(params[:restaurant]) 
     @review = Review.new
 
     respond_to do |format|

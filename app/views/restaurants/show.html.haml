@@ -5,7 +5,6 @@
     %script{src: "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", type: "text/javascript"}
 
   %body
-    %p#notice= notice
     %h1= @restaurant.name
     %restaurantInfo
       = link_to 'Edit this restaurant', edit_restaurant_path
@@ -32,7 +31,7 @@
       - @restaurant.reviews.each do |review|
         %p
           %revUsr
-            = link_to "#{review.user.username}", review.user
+            = link_to "#{review.user.name}", review.user
             \says
           %br
           %emph1
